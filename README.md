@@ -9,7 +9,7 @@ Personal portfolio website showcasing my work in data science, healthcare AI, an
 - Language learning project
 
 ## Built With
-- HTML, CSS, JavaScript
+- HTML - structure, CSS - styling, JavaScript - animations
 
 ## Deployment
 Deployed with Cloudflare Pages
