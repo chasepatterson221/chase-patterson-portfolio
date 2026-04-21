@@ -1,34 +1,3 @@
-<!--
-Executive Summary
-This revision keeps the portfolio’s existing recruiter-facing structure intact while adding two contextual images in the Experience section. Each image is placed directly beside the relevant experience card, uses a repo-relative path, includes descriptive alt text, and loads lazily. The new layout is designed so the images visually match the adjacent experience boxes on larger screens and stack neatly underneath them on smaller screens.
-
-Analytical Notes
-The cleanest way to add supporting imagery to a timeline is to pair each text card with a sibling media card inside a local two-column grid. That keeps the images attached to the correct role, preserves the timeline marker, avoids overlap, and makes the mobile collapse predictable. The utility class `.fit-box` gives the media card a stretch-to-match behavior on desktop while allowing safe cropping through `object-fit: cover`.
-
-Responsive Strategy
-The Experience section now uses paired grids for each role:
-1. `avalynpharmapres.jpg` appears to the right of the Avalyn Pharma internship card.
-2. `chasemedals.jpg` appears to the right of the Martial Arts instructor card.
-3. Below tablet widths, each pair collapses to one column and the image stacks underneath the text card.
-
-Repository Path Strategy
-Image paths here assume the files live in the same folder as `index.html`. Static hosts like GitHub Pages are case-sensitive, so `avalynpharmapres.jpg` is different from `avalynpharmapres.jpeg` or `AvalynPharmaPres.JPG`. Rename the files in the repo root or update only the `src` values listed below.
-
-Accessibility Strategy
-All inserted images use meaningful `alt` text and `loading="lazy"`. The structure stays semantic through `<figure>` wrappers without adding visual clutter.
-
-Asset Placement Table
-| Filename to use in repo root | Intended placement | Exact HTML line to edit if filename differs |
-| --- | --- | --- |
-| `avalynpharmapres.jpg` | Right of the Avalyn Pharma internship box in Experience | 1705 |
-| `chasemedals.jpg` | Right of the Martial Arts box in Experience | 1727 |
-| `profile.jpg` | Hero portrait placeholder at top right | 1422 |
-
-Editing Notes
-- Change only the `src` value on the listed line if your filename or extension differs.
-- Example `.fit-box` usage in this file: `<figure class="experience-media fit-box">...</figure>`
-- No external framework has been added. This remains a single portable HTML file.
--->
 <!DOCTYPE html>
 <html lang="en">
 <head>
