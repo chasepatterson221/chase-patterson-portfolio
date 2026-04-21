@@ -1,4 +1,4 @@
-# Chase Patterson Portfolio
+# Chase Patterson Portfolio -> index.html file
 
 Personal portfolio website showcasing my work in data science, healthcare AI, analytics, and research.
 
