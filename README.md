@@ -1,6 +1,7 @@
 # Chase Patterson Portfolio
 
 Personal portfolio website showcasing my work in data science, healthcare AI, analytics, and research.
+Link to Website: https://chase-patterson-portfolio.pages.dev
 
 ## Highlights
 - Parkinson’s disease machine learning research
