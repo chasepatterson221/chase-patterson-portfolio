@@ -129,6 +129,16 @@
       50% { transform: scale(1.08); }
     }
 
+    @keyframes arrowNudge {
+      0%, 100% { transform: translateX(0); }
+      50% { transform: translateX(4px); }
+    }
+
+    @keyframes arrowNudgeDown {
+      0%, 100% { transform: rotate(90deg) translateX(0); }
+      50% { transform: rotate(90deg) translateX(4px); }
+    }
+
     nav {
       position: fixed;
       inset: 0 0 auto 0;
@@ -618,6 +628,8 @@
       line-height: 1.72;
     }
 
+    .sidebar-card p + p { margin-top: 0.6rem; }
+
     .sidebar-card p strong {
       color: var(--navy-900);
       font-weight: 700;
@@ -769,6 +781,128 @@
       gap: 1.5rem;
     }
 
+    /* ---------- Connected IPF/PF pair ---------- */
+    .project-pair {
+      border-radius: calc(var(--radius-lg) + 6px);
+      padding: 1.5rem;
+      border: 1px solid var(--border-strong);
+      background:
+        radial-gradient(circle at 50% 0%, rgba(244, 210, 106, 0.16), transparent 55%),
+        linear-gradient(180deg, #FFFBEC, var(--white));
+      box-shadow: var(--shadow-soft);
+      margin-bottom: 1.5rem;
+    }
+
+    .pair-intro {
+      display: flex;
+      align-items: center;
+      gap: 0.9rem;
+      flex-wrap: wrap;
+      margin-bottom: 1.25rem;
+      padding: 0 0.25rem;
+    }
+
+    .pair-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.36rem 0.9rem;
+      border-radius: 999px;
+      background: linear-gradient(135deg, var(--navy-900), var(--navy-800));
+      color: var(--gold-200);
+      border: 1px solid rgba(199, 160, 8, 0.35);
+      font-size: 0.7rem;
+      font-weight: 800;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    .pair-question {
+      font-family: var(--font-display);
+      font-size: clamp(1.05rem, 1.8vw, 1.28rem);
+      font-weight: 600;
+      color: var(--navy-900);
+      line-height: 1.4;
+    }
+
+    .pair-question span {
+      display: block;
+      font-family: var(--font-body);
+      font-size: 0.88rem;
+      font-weight: 400;
+      color: var(--muted);
+      margin-top: 0.15rem;
+    }
+
+    .pair-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 76px minmax(0, 1fr);
+      align-items: stretch;
+    }
+
+    .pair-connector {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 0.7rem;
+    }
+
+    .pair-connector::before {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 0;
+      right: 0;
+      border-top: 2px dashed rgba(199, 160, 8, 0.55);
+      transform: translateY(-50%);
+      z-index: 0;
+    }
+
+    .connector-arrow {
+      position: relative;
+      z-index: 1;
+      width: 52px;
+      height: 52px;
+      border-radius: 999px;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(135deg, var(--gold-400), var(--gold-300));
+      color: var(--navy-950);
+      border: 3px solid var(--white);
+      box-shadow:
+        0 0 0 2px rgba(199, 160, 8, 0.34),
+        0 12px 26px rgba(224, 184, 77, 0.30);
+    }
+
+    .connector-arrow svg {
+      width: 24px;
+      height: 24px;
+      animation: arrowNudge 1.8s ease-in-out infinite;
+    }
+
+    .connector-label {
+      position: relative;
+      z-index: 1;
+      font-size: 0.64rem;
+      font-weight: 800;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--navy-800);
+      background: #FFFBEC;
+      padding: 0.15rem 0.35rem;
+      border-radius: 6px;
+      text-align: center;
+      line-height: 1.3;
+    }
+
+    /* ---------- In-progress trio ---------- */
+    .projects-trio {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
     .project-card {
       border-radius: var(--radius-lg);
       padding: 1.7rem;
@@ -890,6 +1024,9 @@
       margin-bottom: 1.2rem;
       flex: 1;
     }
+
+    /* Only the last description stretches, so tags and links line up at the bottom */
+    .project-card .project-desc:first-of-type { flex: 0 0 auto; }
 
     .project-highlight {
       background: linear-gradient(135deg, #FFF6D8, #FFFDF2);
@@ -1228,6 +1365,9 @@
       .hero-copy { max-width: none; }
       .hero-media { justify-content: flex-start; }
       .contact-grid { grid-template-columns: 1fr; }
+
+      .projects-trio { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .projects-trio > :last-child { grid-column: 1 / -1; }
     }
 
     @media (max-width: 900px) {
@@ -1235,6 +1375,35 @@
       .about-grid { grid-template-columns: 1fr; }
       .experience-pair { grid-template-columns: 1fr; }
       .fit-box { min-height: 240px; }
+
+      /* Stack the IPF pair and point the arrow down */
+      .pair-grid { grid-template-columns: 1fr; }
+
+      .pair-connector {
+        flex-direction: row;
+        padding: 1rem 0;
+      }
+
+      .pair-connector::before {
+        top: 0;
+        bottom: 0;
+        left: 50%;
+        right: auto;
+        border-top: none;
+        border-left: 2px dashed rgba(199, 160, 8, 0.55);
+        transform: translateX(-50%);
+      }
+
+      .connector-arrow svg {
+        transform: rotate(90deg);
+        animation-name: arrowNudgeDown;
+      }
+
+      .connector-label {
+        position: absolute;
+        left: calc(50% + 38px);
+        text-align: left;
+      }
     }
 
     @media (max-width: 760px) {
@@ -1279,6 +1448,8 @@
       .tl-card {
         padding: 1.25rem;
       }
+
+      .project-pair { padding: 1rem; }
     }
 
     @media (max-width: 560px) {
@@ -1359,7 +1530,8 @@
           <h1 class="hero-name"><em>Chase's Portfolio</em></h1>
 
           <p class="hero-bio">
-            I'm a prospective <strong>Data Scientist</strong> with real-world experience applying analytics and ML to healthcare research, biopharma strategy, and financial operations. I aim to innovate to <strong>help others and spark individual curiosity</strong> — from predicting Parkinson's disease, exploring planets beyond our solar system, to tracking all <strong>3 languages</strong> I'm actively learning!
+           I'm a prospective <strong>Data Scientist</strong> with real-world experience applying analytics and ML to healthcare research, biopharma strategy, and financial operations. I aim to innovate to <strong>help others and spark individual curiosity</strong> — From clinical research and AI-driven human cognitive tracking to learning Shawn Mendes’s 2024 album *Shawn* on guitar and studying all three
+ <strong>3 languages</strong> I'm actively learning!
           </p>
 
           <div class="hero-cta">
@@ -1369,8 +1541,8 @@
 
           <div class="hero-stats" aria-label="Portfolio highlights">
             <div class="hero-stat">
-              <div class="stat-val">4</div>
-              <div class="stat-label">Research Projects</div>
+              <div class="stat-val">5</div>
+              <div class="stat-label">Portfolio Projects</div>
             </div>
             <div class="hero-stat">
               <div class="stat-val">$1.2M+</div>
@@ -1445,7 +1617,9 @@
 
             <div class="sidebar-card">
               <h4>Currently working on</h4>
-              <p>Active wearable health data study with <strong>SocialBit</strong> — modeling Daily Social Interaction Fragmentation in Parkinson’s Disease using real-time biometric data. Data collection phase underway.</p>
+              <p><strong>Offloaded</strong> — building a data pipeline to measure how our reliance on AI has shifted from using it as a tool to handing it our thinking.</p>
+              <p><strong>Guitar Tracker</strong> — learning Shawn Mendes' album <em>Shawn</em> as a beginner/intermediate and logging every practice session as data.</p>
+              <p><strong>Romance Languages</strong> — ongoing Italian, French, and Spanish study through immersion, grammar, and conversation.</p>
             </div>
           </aside>
         </div>
@@ -1457,7 +1631,6 @@
               <div class="chips">
                 <span class="chip chip-green">Python</span>
                 <span class="chip chip-green">SQL</span>
-                <span class="chip chip-green">Java</span>
               </div>
             </div>
 
@@ -1492,7 +1665,6 @@
                 <span class="chip chip-gold">Excel</span>
                 <span class="chip chip-gold">Jupyter Notebook</span>
                 <span class="chip chip-gold">Prendio</span>
-                <span class="chip chip-gold">NetSuite</span>
                 <span class="chip chip-gold">WorkDay (Adaptive Planning Integration)</span>
               </div>
             </div>
@@ -1511,115 +1683,155 @@
           </div>
         </div>
 
-        <div class="projects-grid fade-up">
-          <article class="project-card" aria-labelledby="project-1-title">
-            <span class="project-icon" aria-hidden="true"></span>
-            <div class="project-meta">
-              <div class="project-category">Industry Research · Wearables · Health AI</div>
-              <span class="project-status status-progress">In Progress</span>
-            </div>
-            <h3 id="project-1-title" class="project-name">Wearable Health Data Analytics — Social Fatigue in Parkinson's Disease</h3>
-            <p class="project-desc">
-              An active industry research collaboration with <strong>SocialBit</strong>. Using wearable sensor data — heart rate, movement variance, AI-predicted activity states — to assess whether social interactions in a Parkinson's patient are continuous or fragmented throughout the day.
+        <!-- ===== Connected IPF/PF study: trial database feeds the event study ===== -->
+        <div class="project-pair fade-up">
+          <div class="pair-intro">
+            <span class="pair-badge">Connected Study</span>
+            <p class="pair-question">
+              Does Wall Street accurately price IPF science?
+              <span>Two projects built on one shared PostgreSQL database. The trial database feeds the stock-market event study.</span>
             </p>
-            <div class="project-highlight">
-              Using a smartwatch-based social sensing tool to examine whether social participation in a person with Parkinson’s is fragmented across the day, and whether fragmentation is associated with lower movement and altered heart-rate patterns.
-            </div>
-            <p class="project-desc">
-              Active data collection phase from a patient with Parkinson's Disease. Establishing benchmarks from a healthy control baseline to enable comparison against the Parkinson's patient. Results and methodology write-up coming upon study completion.
-            </p>
-            <div class="project-tags">
-              <span class="project-tag">Wearable Sensors</span>
-              <span class="project-tag">Time-Series Analysis</span>
-              <span class="project-tag">Python</span>
-              <span class="project-tag">Signal Processing</span>
-              <span class="project-tag">Parkinson's Research</span>
-              <span class="project-tag">Health AI</span>
-            </div>
-           <div class="project-links">
-          <span class="project-link dim">
-            Data collection in progress — results coming soon😁
-            </span>
+          </div>
 
-            <a href="https://github.com/chasepatterson221/social-fatigue-in-parkinsons-wearables" 
-         class="project-link" 
-         target="_blank" 
-         rel="noreferrer">
-        → GitHub
-      </a>
-      </div>
+          <div class="pair-grid">
+            <article class="project-card" aria-labelledby="project-ipf1-title">
+              <span class="project-icon" aria-hidden="true"></span>
+              <div class="project-meta">
+                <div class="project-category">SQL · Data Engineering · ML</div>
+                <span class="project-status status-complete">Completed</span>
+              </div>
+              <h3 id="project-ipf1-title" class="project-name">IPF/PF Clinical Trial Intelligence Database</h3>
+              <p class="project-desc">
+                An end-to-end pipeline pulling <strong>~575 IPF/PF clinical trials</strong> from the ClinicalTrials.gov API, enriched with openFDA approval outcomes and loaded into a normalized five-table PostgreSQL database running in Docker.
+              </p>
+              <div class="project-highlight">
+                Antifibrotic trials led on both scale and outcome — 35.3% reached Phase 3+ and 86.4% completed — tracking with the only mechanism class backed by FDA-approved IPF drugs.
+              </div>
+              <p class="project-desc">
+                Tagged ~912 interventions by mechanism class, wrote four SQL analyses with CTEs and window functions (sponsor ranking, phase funnel, mechanism success rates, duration benchmarks), and built a logistic regression model that scored 100 active trials for termination risk. Published as a four-view Tableau Public story.
+              </p>
+              <div class="project-tags">
+                <span class="project-tag">PostgreSQL</span>
+                <span class="project-tag">Docker</span>
+                <span class="project-tag">SQL Window Functions</span>
+                <span class="project-tag">Python</span>
+                <span class="project-tag">Scikit-learn</span>
+                <span class="project-tag">REST APIs</span>
+                <span class="project-tag">Tableau</span>
+              </div>
+              <div class="project-links">
+                <a href="https://github.com/chasepatterson221/ipf_trial_intelligence" class="project-link" target="_blank" rel="noreferrer">See Work -> GitHub</a>
+                <a href="https://public.tableau.com/app/profile/chase.patterson8613/viz/IPF_PF_Trial_Intelligence_Dashboard/IPFPFTrialStories" class="project-link" target="_blank" rel="noreferrer">Tableau Dashboard</a>
+              </div>
             </article>
 
-          <article class="project-card" aria-labelledby="project-2-title">
+            <div class="pair-connector" aria-hidden="true">
+              <span class="connector-arrow">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M4 12h15" />
+                  <path d="M13 6l6 6-6 6" />
+                </svg>
+              </span>
+              <span class="connector-label">Feeds</span>
+            </div>
+
+            <article class="project-card" aria-labelledby="project-ipf2-title">
+              <span class="project-icon" aria-hidden="true"></span>
+              <div class="project-meta">
+                <div class="project-category">Finance · Event Study · Biopharma</div>
+                <span class="project-status status-complete">Completed</span>
+              </div>
+              <h3 id="project-ipf2-title" class="project-name">IPF/PF Biopharma Trial Event Study</h3>
+              <p class="project-desc">
+                Measures how the stock market reacts to IPF/PF trial milestones. Using the publicly traded sponsors flagged in the trial database, I pulled <strong>113K+ daily price rows</strong> across 31 tickers and computed cumulative abnormal returns around <strong>270 trial events</strong>.
+              </p>
+              <div class="project-highlight">
+                Phase 3 trial starts drew the strongest selloff (mean CAR −3.3%), and small-cap biotechs reacted 5–10x more than large pharma.
+              </div>
+              <p class="project-desc">
+                Built a standard event study in Python (5-day event window, 60-day estimation baseline, two-tailed t-tests) and wrote results back to the shared Postgres database. The honest finding: only ~5–11% of events were statistically significant, so the market doesn't systematically misprice IPF trials — the signal lives at the tails.
+              </p>
+              <div class="project-tags">
+                <span class="project-tag">Event Study</span>
+                <span class="project-tag">Python</span>
+                <span class="project-tag">yfinance</span>
+                <span class="project-tag">SciPy</span>
+                <span class="project-tag">PostgreSQL</span>
+                <span class="project-tag">Financial Analytics</span>
+                <span class="project-tag">Tableau</span>
+              </div>
+              <div class="project-links">
+                <a href="https://github.com/chasepatterson221/ipf-earnings-tracker" class="project-link" target="_blank" rel="noreferrer">See Work -> GitHub</a>
+                <a href="https://public.tableau.com/app/profile/chase.patterson8613/viz/IPF_PF_Earnings_Event_Study/Story1" class="project-link" target="_blank" rel="noreferrer">Tableau Dashboard</a>
+              </div>
+            </article>
+          </div>
+        </div>
+
+        <!-- ===== In-progress projects ===== -->
+        <div class="projects-grid projects-trio fade-up">
+          <article class="project-card" aria-labelledby="project-offloaded-title">
             <span class="project-icon" aria-hidden="true"></span>
             <div class="project-meta">
-              <div class="project-category">ML · Healthcare · EDA</div>
-              <span class="project-status status-complete">Completed</span>
+              <div class="project-category">AI Usage · Data Engineering</div>
+              <span class="project-status status-progress">In Progress</span>
             </div>
-            <h3 id="project-2-title" class="project-name">Predicting Parkinson's Disease from Clinical Voice Biomarkers</h3>
+            <h3 id="project-offloaded-title" class="project-name">Offloaded — Measuring the Shift from AI-as-Tool to AI-as-Thinker (2022–2026)</h3>
             <p class="project-desc">
-              Applied machine learning to a clinical dataset of <strong>23,000+ patient records</strong> to identify Parkinson's disease from acoustic voice measurements. Features like jitter, shimmer, and pitch irregularity — invisible to the ear, but detectable through signal processing.
+              An honest look at how students and everyday people have come to rely on AI since 2023 — my senior year of high school — and whether we're <strong>still doing our own thinking</strong>.
             </p>
             <div class="project-highlight">
-              Personal motivation: a family member's Parkinson's diagnosis sparked this project and the drive to learn more.
+              Core question: when did AI stop being a tool we use and start being something we hand our thinking to?
             </div>
             <p class="project-desc">
-              Performed EDA, correlation analysis, and dimensionality reduction (PCA) to distill 20+ acoustic variables into the features most predictive of disease status. Visualized results clearly for non-technical stakeholders. Trained and evaluated classification models, addressing class imbalance (4,290 healthy vs. 19,551 Parkinson's records).
+              Early build phase. The pipeline is scaffolded for ingestion, dbt models, and Spark processing, and I'm writing the core code myself. Methodology and findings coming as the analysis takes shape.
             </p>
             <div class="project-tags">
               <span class="project-tag">Python</span>
-              <span class="project-tag">Scikit-learn</span>
-              <span class="project-tag">PCA</span>
-              <span class="project-tag">Pandas</span>
-              <span class="project-tag">Seaborn</span>
-              <span class="project-tag">Matplotlib</span>
-              <span class="project-tag">EDA</span>
-              <span class="project-tag">Healthcare Data</span>
+              <span class="project-tag">SQL</span>
+              <span class="project-tag">PySpark</span>
+              <span class="project-tag">dbt</span>
+              <span class="project-tag">Data Pipelines</span>
+              <span class="project-tag">AI Usage</span>
             </div>
             <div class="project-links">
-              <a href="https://github.com/chasepatterson221/parkinsons-voice-biomarkers-ml" class="project-link" target="_blank" rel="noreferrer">See Work -> GitHub</a>
-              <span class="project-link dim"></span>
+              <a href="https://github.com/chasepatterson221/offloaded" class="project-link" target="_blank" rel="noreferrer">See Work -> GitHub</a>
             </div>
           </article>
 
-          <article class="project-card" aria-labelledby="project-3-title">
+          <article class="project-card" aria-labelledby="project-guitar-title">
             <span class="project-icon" aria-hidden="true"></span>
             <div class="project-meta">
-              <div class="project-category">Unsupervised ML · Clustering</div>
-              <span class="project-status status-complete">Completed</span>
+              <div class="project-category">Personal Growth · Practice Analytics</div>
+              <span class="project-status status-progress">In Progress</span>
             </div>
-            <h3 id="project-3-title" class="project-name">Exoplanet Clustering — Classifying Planets Beyond Our Solar System</h3>
+            <h3 id="project-guitar-title" class="project-name">Guitar Tracker — Learning an Album, One Logged Session at a Time</h3>
             <p class="project-desc">
-              Used K-Means and Hierarchical clustering on a <strong>4,855-planet Kaggle dataset</strong> to discover whether exoplanets naturally group into known planetary categories — rocky planets, gas giants, Hot Jupiters — using only physical and orbital measurements.
+              Starting as a beginner, I'm learning Shawn Mendes' 2024 album <em>Shawn</em> on guitar and treating <strong>every practice session as a data point</strong> to see what consistent, spaced practice actually produces.
             </p>
             <div class="project-highlight">
-              The elbow method confirmed 3 optimal clusters — perfectly aligning with established astrophysical theory. Patterns discovered from data alone.
+              Started September 2026 — up to 60 minutes a day of spaced practice, logged and measured.
             </div>
             <p class="project-desc">
-              Built custom data cleaning pipelines to handle messy, mixed-format scientific measurements. Applied PCA for 2D cluster visualization. Validated groupings using hierarchical dendrograms. The 3 clusters mapped cleanly to small cool planets, temperate gas giants, and close-orbiting Hot Jupiters.
+              Building the tracking database myself in PostgreSQL running in Docker, starting with the schema. Progress charts and results will follow as sessions add up.
             </p>
             <div class="project-tags">
-              <span class="project-tag">Python</span>
-              <span class="project-tag">K-Means</span>
-              <span class="project-tag">Hierarchical Clustering</span>
-              <span class="project-tag">PCA</span>
-              <span class="project-tag">Scikit-learn</span>
-              <span class="project-tag">SciPy</span>
-              <span class="project-tag">Seaborn</span>
-            </div>
-            <div class="project-links">
-              <a href="https://github.com/chasepatterson221/exoplanet-clustering-proj" class="project-link" target="_blank" rel="noreferrer">See Work -> GitHub</a>
-              <span class="project-link dim"></span>
+              <span class="project-tag">PostgreSQL</span>
+              <span class="project-tag">Docker</span>
+              <span class="project-tag">SQL</span>
+              <span class="project-tag">Self-Tracking</span>
+              <span class="project-tag">Spaced Practice</span>
+              <span class="project-tag">Guitar</span>
             </div>
           </article>
 
-          <article class="project-card" aria-labelledby="project-4-title">
+          <article class="project-card" aria-labelledby="project-lang-title">
             <span class="project-icon" aria-hidden="true"></span>
             <div class="project-meta">
               <div class="project-category">Linguistics · Personal Growth</div>
               <span class="project-status status-progress">In Progress</span>
             </div>
-            <h3 id="project-4-title" class="project-name">The Romance Languages: Italian, French, &amp; Spanish (Colombian)</h3>
+            <h3 id="project-lang-title" class="project-name">The Romance Languages: Italian, French, &amp; Spanish (Colombian)</h3>
             <p class="project-desc">
               A dedicated pursuit of becoming a polyglot by learning the <strong>three major Romance languages</strong>. This project, inspired by my mother's Italian heritage, is about more than just vocabulary; I want to connect with people of diverse backgrounds and learn about their unique cultures.
             </p>
@@ -1638,21 +1850,8 @@
               <span class="project-tag">Grammar Studies</span>
             </div>
             <div class="project-links">
-              <div class="project-links">
-            <span class="project-title">Lifelong Learning</span>
-            <span class="divider"> → </span>
-
-          <a href="https://github.com/chasepatterson221/romance-languages-learning-proj" class="project-link" target="_blank" rel="noreferrer">
-            GITHUB
-           </a>
-
-             <span class="divider"> → </span>
-
-          <a href="https://www.notion.so/Romance-Languages-Tracker-02ef3db6fcb042e7b982426de274553a" class="project-link" target="_blank" rel="noreferrer">
-            NOTION
-          </a>
-            </div>
-              <span class="project-link dim"></span>
+              <a href="https://github.com/chasepatterson221/romance-languages-learning-proj" class="project-link" target="_blank" rel="noreferrer">See Work -> GitHub</a>
+              <a href="https://www.notion.so/Romance-Languages-Tracker-02ef3db6fcb042e7b982426de274553a" class="project-link" target="_blank" rel="noreferrer">Notion Tracker</a>
             </div>
           </article>
         </div>
