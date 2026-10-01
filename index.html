@@ -6,7 +6,7 @@
   <title>Chase Patterson — Data Scientist/Analyst</title>
 
   <!-- ===== Search + link preview tags ===== -->
-  <meta name="description" content="Chase Patterson — Data Science graduate (UNC Charlotte, 3.93 GPA) with biopharma corporate development and finance experience. Projects in SQL, Python, PostgreSQL, and Tableau." />
+  <meta name="description" content="Chase Patterson — Data Science graduate (UNC Charlotte, 3.93 GPA) with biopharma corporate development and finance experience. Projects in SQL, Python, machine learning, PostgreSQL, and Tableau." />
   <meta name="author" content="Chase Patterson" />
   <meta name="robots" content="index, follow" />
   <meta name="theme-color" content="#0A2342" />
@@ -16,7 +16,7 @@
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Chase Patterson" />
   <meta property="og:title" content="Chase Patterson — Data Scientist/Analyst" />
-  <meta property="og:description" content="Data Science graduate with biopharma and finance experience. See my IPF/PF clinical trial database, stock-market event study, and more." />
+  <meta property="og:description" content="Data Science graduate with biopharma and finance experience. See my IPF/PF clinical trial database, stock-market event study, Parkinson's machine learning work, and more." />
   <meta property="og:url" content="https://chasepatterson221.github.io/chase-patterson-portfolio/" />
   <meta property="og:image" content="https://chasepatterson221.github.io/chase-patterson-portfolio/og-image.png" />
   <meta property="og:image:secure_url" content="https://chasepatterson221.github.io/chase-patterson-portfolio/og-image.png" />
@@ -29,7 +29,7 @@
   <!-- Twitter/X cards -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Chase Patterson — Data Scientist/Analyst" />
-  <meta name="twitter:description" content="Data Science graduate with biopharma and finance experience. Projects in SQL, Python, PostgreSQL, and Tableau." />
+  <meta name="twitter:description" content="Data Science graduate with biopharma and finance experience. Projects in SQL, Python, machine learning, PostgreSQL, and Tableau." />
   <meta name="twitter:image" content="https://chasepatterson221.github.io/chase-patterson-portfolio/og-image.png" />
 
   <!-- Browser tab icon (gold dot, matches the nav logo) -->
@@ -285,8 +285,7 @@
       background: linear-gradient(135deg, var(--gold-400), var(--gold-300));
       color: var(--navy-950);
       font-size: 0.875rem;
-      font-weight: 600;fcompa
-      
+      font-weight: 600;
       box-shadow: 0 10px 28px rgba(224, 184, 77, 0.25);
     }
 
@@ -654,23 +653,29 @@
       border: 1px solid rgba(250, 231, 164, 0.5);
     }
 
+    /* Toolkit band is shorter than the other sections */
+    #skills.band { padding: clamp(3.5rem, 7vw, 5.5rem) 0; }
+    #skills .section-head { margin-bottom: clamp(2rem, 4vw, 2.75rem); }
+
+    /* Row 1: three small tiles. Row 2: Analysis & ML (wide) + Business */
     .skills-bento {
       display: grid;
       grid-template-columns: repeat(6, minmax(0, 1fr));
-      gap: 1.25rem;
+      grid-auto-flow: dense;
+      gap: 0.9rem;
     }
 
     .skill-tile {
       grid-column: span 2;
       position: relative;
       overflow: hidden;
-      padding: 1.75rem;
-      border-radius: var(--r-lg);
+      padding: 1.15rem 1.25rem 1.25rem;
+      border-radius: var(--r-md);
       background: rgba(255, 255, 255, 0.045);
       border: 1px solid rgba(255, 255, 255, 0.08);
     }
 
-    .skill-tile.wide { grid-column: span 3; }
+    .skill-tile.xl { grid-column: span 4; }
 
     .skill-tile::before {
       content: "";
@@ -683,10 +688,10 @@
     .skill-tile::after {
       content: "";
       position: absolute;
-      width: 240px;
-      height: 240px;
-      top: -130px;
-      right: -70px;
+      width: 180px;
+      height: 180px;
+      top: -100px;
+      right: -60px;
       border-radius: 50%;
       background: radial-gradient(circle, var(--accent-soft), transparent 70%);
       pointer-events: none;
@@ -704,22 +709,22 @@
       z-index: 1;
       display: flex;
       align-items: center;
-      gap: 0.65rem;
+      gap: 0.55rem;
       font-family: var(--font-display);
-      font-size: 1.3rem;
+      font-size: 1.05rem;
       font-weight: 600;
-      letter-spacing: -0.02em;
+      letter-spacing: -0.015em;
       color: var(--white);
-      margin-bottom: 1.2rem;
+      margin-bottom: 0.75rem;
     }
 
     .skill-title::before {
       content: "";
-      width: 10px;
-      height: 10px;
-      border-radius: 3px;
+      width: 8px;
+      height: 8px;
+      border-radius: 2px;
       background: var(--accent);
-      box-shadow: 0 0 14px var(--accent);
+      box-shadow: 0 0 12px var(--accent);
     }
 
     .chips {
@@ -727,17 +732,17 @@
       z-index: 1;
       display: flex;
       flex-wrap: wrap;
-      gap: 0.5rem;
+      gap: 0.35rem;
       list-style: none;
     }
 
     .chip {
       display: inline-flex;
       align-items: center;
-      gap: 0.5rem;
-      padding: 0.42rem 0.85rem;
+      gap: 0.4rem;
+      padding: 0.3rem 0.65rem;
       border-radius: 999px;
-      font-size: 0.9rem;
+      font-size: 0.8rem;
       font-weight: 500;
       line-height: 1.2;
       color: rgba(255, 255, 255, 0.88);
@@ -747,8 +752,8 @@
 
     .chip::before {
       content: "";
-      width: 6px;
-      height: 6px;
+      width: 5px;
+      height: 5px;
       border-radius: 50%;
       background: var(--accent);
       flex-shrink: 0;
@@ -1063,8 +1068,9 @@
     .project-feature .project-link:hover,
     .project-feature .project-link:focus-visible { color: var(--white); }
 
-    /* ----- Hobby cards: smaller, lighter ----- */
-    .hobbies-head {
+    /* ----- Sub-section headers (More projects + Off the clock) ----- */
+    .hobbies-head,
+    .more-head {
       margin: clamp(3.5rem, 6vw, 5rem) 0 1.5rem;
       display: flex;
       align-items: baseline;
@@ -1073,7 +1079,8 @@
       gap: 0.5rem 1.5rem;
     }
 
-    .hobbies-head h3 {
+    .hobbies-head h3,
+    .more-head h3 {
       font-family: var(--font-display);
       font-size: clamp(1.6rem, 2.6vw, 2rem);
       font-weight: 700;
@@ -1081,8 +1088,70 @@
       color: var(--navy-900);
     }
 
-    .hobbies-head p { color: var(--muted); font-size: 1.02rem; }
+    .hobbies-head p,
+    .more-head p { color: var(--muted); font-size: 1.02rem; }
 
+    /* ----- Compact project cards: gist + one key detail ----- */
+    .more-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1.25rem;
+    }
+
+    .project-compact {
+      display: flex;
+      flex-direction: column;
+      padding: 1.4rem 1.5rem;
+      border-radius: var(--r-lg);
+      background: var(--white);
+      border: 1px solid var(--line);
+      transition: box-shadow 0.3s ease, border-color 0.3s ease;
+    }
+
+    .project-compact:hover,
+    .project-compact:focus-within {
+      border-color: rgba(199, 160, 8, 0.35);
+      box-shadow: var(--shadow);
+    }
+
+    .project-compact .project-meta { margin-bottom: 0.7rem; }
+    .project-compact .project-category { font-size: 0.8rem; }
+    .project-compact .status { font-size: 0.72rem; padding: 0.22rem 0.6rem; }
+
+    .compact-name {
+      font-family: var(--font-display);
+      font-size: 1.18rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      line-height: 1.25;
+      color: var(--navy-900);
+      margin-bottom: 0.55rem;
+      text-wrap: balance;
+    }
+
+    .compact-gist {
+      font-size: 0.93rem;
+      line-height: 1.6;
+      margin-bottom: 0.8rem;
+    }
+
+    .compact-detail {
+      font-size: 0.87rem;
+      line-height: 1.55;
+      color: var(--muted);
+      padding-left: 0.8rem;
+      border-left: 2px solid var(--gold-400);
+      margin-bottom: 1rem;
+    }
+
+    .compact-detail strong { color: var(--navy-900); font-weight: 600; }
+
+    .project-compact .tags { margin-bottom: 0.9rem; gap: 0.35rem; }
+    .project-compact .tag { font-size: 0.75rem; padding: 0.22rem 0.6rem; background: var(--slate-50); }
+    .project-compact .project-links { padding-top: 0.8rem; }
+    .project-compact .project-link { font-size: 0.88rem; }
+
+    /* ----- Hobby cards: smaller, lighter ----- */
     .hobby-grid {
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -1335,9 +1404,10 @@
       .hero-media { justify-content: flex-start; }
 
       .skills-bento { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-      .skill-tile,
-      .skill-tile.wide { grid-column: span 1; }
-      .skill-tile:last-child { grid-column: 1 / -1; }
+      .skill-tile { grid-column: span 1; }
+      .skill-tile.xl { grid-column: 1 / -1; }
+
+      .more-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     }
 
     @media (max-width: 900px) {
@@ -1398,8 +1468,10 @@
       .nav-links a { font-size: 0.84rem; }
 
       .hobby-grid,
+      .more-grid,
       .skills-bento { grid-template-columns: 1fr; }
-      .skill-tile:last-child { grid-column: auto; }
+      .skill-tile,
+      .skill-tile.xl { grid-column: auto; }
 
       .course-list { grid-template-columns: 1fr; }
     }
@@ -1479,7 +1551,7 @@
 
           <div class="hero-stats" aria-label="Portfolio highlights">
             <div>
-              <div class="stat-val">3</div>
+              <div class="stat-val">6</div>
               <div class="stat-label">Data projects</div>
             </div>
             <div>
@@ -1523,10 +1595,7 @@
                 At <strong>Avalyn Pharma</strong>, I spent almost a year in Corporate Development and three months in Finance. I moved the team's CRM off spreadsheets and into Salesforce, built KPI dashboards, and put together financial models that went straight to the CFO. The biggest lesson was a humbling one: nobody cares how clever an analysis is if they can't understand it in the two minutes they have.
               </p>
               <p>
-                After my two internships wrapped, I wanted to keep learning about this space on my own, with questions like "Does the market actually understand what's happening in IPF clinical trials?" I answered it using only public data: first a database of every IPF/PF trial I could find, then a stock-market event study built on top of it. Healthcare data also hits close to home for me. Not just personal battles, but my uncle was diagnosed with <strong>Parkinson's disease</strong>, and since then I can't see health data as just rows in a table.
-              </p>
-              <p>
-                Right now I'm building <strong>Offloaded</strong>, a project on how much of our thinking we've started handing to AI. These tools showed up during my senior year of high school, so I watched the shift happen in my own classrooms. I'm writing the core code myself, partly because it would be a little ironic not to.
+                After my two internships wrapped up, I wanted to keep learning about this space on my own, with questions like "Does the market actually understand what's happening in IPF clinical trials?" I answered it using only public data: first a database of every IPF/PF trial I could find, then a stock-market event study built on top of it. Healthcare data also hits close to home for me. Not just personal battles, but my uncle was diagnosed with <strong>Parkinson's disease</strong>, and since then I can't see health data as just rows in a table.
               </p>
               <p>
                 I've also taught martial arts for over a decade, which taught me that if a student doesn't get it, the problem is usually how I explained it. Outside of that, I'm an intermediate guitar player working through Shawn Mendes' album <em>Shawn</em> and recording my practice sessions along the way. I'm also studying Italian (thanks to my mom's side of the family), French, and Spanish.
@@ -1587,7 +1656,7 @@
         </div>
 
         <div class="skills-bento reveal">
-          <div class="skill-tile wide k-lang">
+          <div class="skill-tile k-lang">
             <h3 class="skill-title">Languages &amp; databases</h3>
             <ul class="chips">
               <li class="chip core">Python</li>
@@ -1598,7 +1667,7 @@
             </ul>
           </div>
 
-          <div class="skill-tile wide k-eng">
+          <div class="skill-tile k-eng">
             <h3 class="skill-title">Data engineering</h3>
             <ul class="chips">
               <li class="chip">PySpark</li>
@@ -1607,21 +1676,29 @@
               <li class="chip">Git &amp; GitHub</li>
               <li class="chip">REST APIs</li>
               <li class="chip">ETL pipelines</li>
+              <li class="chip">Data cleaning</li>
+              <li class="chip">Data quality checks</li>
             </ul>
           </div>
 
-          <div class="skill-tile k-ml">
+          <div class="skill-tile xl k-ml">
             <h3 class="skill-title">Analysis &amp; ML</h3>
             <ul class="chips">
               <li class="chip core">pandas</li>
               <li class="chip">NumPy</li>
               <li class="chip">scikit-learn</li>
               <li class="chip">SciPy</li>
+              <li class="chip">Classification</li>
               <li class="chip">Logistic regression</li>
+              <li class="chip">Random forest</li>
+              <li class="chip">Model evaluation</li>
+              <li class="chip">Feature engineering</li>
+              <li class="chip">K-means &amp; hierarchical clustering</li>
+              <li class="chip">PCA</li>
               <li class="chip">Hypothesis testing</li>
               <li class="chip">Event studies</li>
-              <li class="chip">Feature engineering</li>
-              <li class="chip">Clustering &amp; PCA</li>
+              <li class="chip">Wearable sensor data</li>
+              <li class="chip">Missing-data analysis</li>
             </ul>
           </div>
 
@@ -1781,6 +1858,89 @@
             </div>
           </div>
         </article>
+
+        <!-- More projects: compact cards (gist + one key detail) -->
+        <div class="more-head reveal">
+          <h3>More projects.</h3>
+          <p>Healthcare machine learning, wearable data, and unsupervised learning.</p>
+        </div>
+
+        <div class="more-grid reveal">
+          <article class="project-compact" aria-labelledby="project-pdvoice-title">
+            <div class="project-meta">
+              <span class="project-category">Healthcare ML</span>
+              <span class="status status-complete">Completed</span>
+            </div>
+            <h4 id="project-pdvoice-title" class="compact-name">Parkinson's Detection from Voice</h4>
+            <p class="compact-gist">
+              Classifies healthy vs. Parkinson's voice recordings using acoustic features like jitter, shimmer, and pitch irregularity that the ear can't pick up.
+            </p>
+            <p class="compact-detail">
+              Built a scikit-learn pipeline with feature selection and scaling, evaluated on <strong>accuracy, precision, and recall</strong>. A handful of vocal features carried most of the predictive signal.
+            </p>
+            <div class="card-foot">
+              <ul class="tags">
+                <li class="tag">Python</li>
+                <li class="tag">scikit-learn</li>
+                <li class="tag">Random forest</li>
+                <li class="tag">Feature selection</li>
+              </ul>
+              <div class="project-links">
+                <a href="https://github.com/chasepatterson221/parkinsons-voice-biomarkers-ml" class="project-link" target="_blank" rel="noreferrer">View on GitHub</a>
+                <a href="https://cpatte77.github.io/DataMining-Analyses/Parkinson's_Disease_Project" class="project-link" target="_blank" rel="noreferrer">Read the report</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="project-compact" aria-labelledby="project-socialbit-title">
+            <div class="project-meta">
+              <span class="project-category">Wearables, industry collaboration</span>
+              <span class="status status-complete">Completed</span>
+            </div>
+            <h4 id="project-socialbit-title" class="compact-name">Social Interaction Patterns in Parkinson's</h4>
+            <p class="compact-gist">
+              With SocialBit, I analyzed a month of wearable data (heart rate, movement, activity states) to test whether a Parkinson's patient's social interactions break into shorter, fragmented blocks.
+            </p>
+            <p class="compact-detail">
+              Found <strong>4–6 hour gaps</strong> on some days and chose not to treat them as zero activity, so time-of-day claims stayed off the table. Data quality came before conclusions.
+            </p>
+            <div class="card-foot">
+              <ul class="tags">
+                <li class="tag">Wearable sensor data</li>
+                <li class="tag">Python</li>
+                <li class="tag">Missing-data analysis</li>
+              </ul>
+              <div class="project-links">
+                <a href="https://github.com/chasepatterson221/social-fatigue-in-parkinsons-wearables" class="project-link" target="_blank" rel="noreferrer">View on GitHub</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="project-compact" aria-labelledby="project-exo-title">
+            <div class="project-meta">
+              <span class="project-category">Unsupervised learning</span>
+              <span class="status status-complete">Completed</span>
+            </div>
+            <h4 id="project-exo-title" class="compact-name">Exoplanet Clustering</h4>
+            <p class="compact-gist">
+              Grouped <strong>4,855 known exoplanets</strong> by mass, radius, orbit, and temperature to see whether planet types emerge on their own, without labels.
+            </p>
+            <p class="compact-detail">
+              K-means (elbow method) and hierarchical clustering separated small, cooler planets from hot, massive <strong>Hot Jupiter</strong>-type planets, visualized in 2D with PCA.
+            </p>
+            <div class="card-foot">
+              <ul class="tags">
+                <li class="tag">K-means</li>
+                <li class="tag">Hierarchical clustering</li>
+                <li class="tag">PCA</li>
+                <li class="tag">scikit-learn</li>
+              </ul>
+              <div class="project-links">
+                <a href="https://github.com/chasepatterson221/exoplanet-clustering-proj" class="project-link" target="_blank" rel="noreferrer">View on GitHub</a>
+              </div>
+            </div>
+          </article>
+        </div>
 
         <!-- Hobbies: smaller cards -->
         <div class="hobbies-head reveal">
